@@ -1,0 +1,25 @@
+{
+  "name": "Share Dish Project",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:18",
+  "forwardPorts": [3000, 5000],
+  "portsAttributes": {
+    "3000": {
+      "label": "React App",
+      "onAutoForward": "notify"
+    },
+    "5000": {
+      "label": "Express API",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": "npm install && cd server && npm install && cd ../client && npm install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.vscode-typescript-next",
+        "esbenp.prettier-vscode",
+        "ms-vscode.vscode-json"
+      ]
+    }
+  }
+} 
