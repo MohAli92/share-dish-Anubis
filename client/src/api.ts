@@ -1,6 +1,27 @@
 import axios from 'axios';
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+// Dynamic API URL detection
+const getApiUrl = () => {
+  // If REACT_APP_API_URL is set, use it
+  if (process.env.REACT_APP_API_URL) {
+    return process.env.REACT_APP_API_URL;
+  }
+  
+  // Check if we're in GitHub Codespaces
+  if (window.location.hostname.includes('github.dev')) {
+    // Extract the codespace URL and replace port 3000 with 5000
+    const currentUrl = window.location.origin;
+    const codespaceUrl = currentUrl.replace(':3000', ':5000');
+    return codespaceUrl;
+  }
+  
+  // Default to localhost for local development
+  return 'http://localhost:5000';
+};
+
+const API_URL = getApiUrl();
+
+console.log('API URL:', API_URL);
 
 const api = axios.create({
   baseURL: API_URL,

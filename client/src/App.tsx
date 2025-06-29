@@ -13,7 +13,11 @@ import Navbar from './components/Navbar';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 
-console.log("API_URL from env:", process.env.REACT_APP_API_URL);
+console.log("Environment Info:");
+console.log("- REACT_APP_API_URL:", process.env.REACT_APP_API_URL);
+console.log("- Current URL:", window.location.href);
+console.log("- Hostname:", window.location.hostname);
+console.log("- Origin:", window.location.origin);
 
 const theme = createTheme({
   palette: {
