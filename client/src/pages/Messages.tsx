@@ -68,13 +68,19 @@ const Messages: React.FC = () => {
   const [actionSuccess, setActionSuccess] = useState<string | null>(null);
   const [actionError, setActionError] = useState<string | null>(null);
 
+  // Debug info
+  console.log('Messages component - User:', user);
+  console.log('Messages component - Token:', localStorage.getItem('token'));
+
   useEffect(() => {
     const fetchChats = async () => {
       if (!user || !user._id) return;
       try {
         setLoading(true);
         setError(null);
-        const response = await api.get('/api/chat/user/' + user._id);
+        console.log('Fetching chats for user:', user._id);
+        const response = await api.get('/api/chat/user/chats');
+        console.log('Chats response:', response.data);
         setChats(response.data);
       } catch (err: any) {
         console.error('Error fetching chats:', err);
